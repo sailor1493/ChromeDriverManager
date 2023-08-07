@@ -134,10 +134,12 @@ if __name__ == "__main__":
     # make symlink
     print("Making symlinks...")
     src = f"chrome/chrome-{build}/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+    abssrc = osp.abspath(src)
     dest = "google-chrome"
-    os.symlink(src, dest)
+    os.symlink(abssrc, dest)
     src = f"chrome/chromedriver-{build}/chromedriver"
+    absdest = osp.abspath(src)
     dest = "chromedriver"
-    os.symlink(src, dest)
+    os.symlink(abssrc, dest)
 
     print("Done!")
