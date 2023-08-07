@@ -81,9 +81,10 @@ if __name__ == "__main__":
         shutil.rmtree(f"chrome/chrome-{build}")
     if osp.exists(f"chrome/chromedriver-{build}"):
         shutil.rmtree(f"chrome/chromedriver-{build}")
-    if osp.exists("google-chrome"):
+    # remove symlinks
+    if osp.exists("google-chrome", follow_symlinks=False):
         os.remove("google-chrome")
-    if osp.exists("chromedriver"):
+    if osp.exists("chromedriver", follow_symlinks=False):
         os.remove("chromedriver")
 
     print("Downloading files...")
@@ -133,7 +134,12 @@ if __name__ == "__main__":
 
     # make symlink
     print("Making symlinks...")
-    src = f"chrome/chrome-{build}/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+    if "mac" in build:
+        src = f"chrome/chrome-{build}/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+    elif "linux" in build:
+        src = f"chrome/chrome-{build}/chrome-{build}/chrome"
+    else:
+        NotImplementedError(f"build {build} not supported")
     abssrc = osp.abspath(src)
     dest = "google-chrome"
     os.symlink(abssrc, dest)
