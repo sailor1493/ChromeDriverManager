@@ -71,6 +71,8 @@ if __name__ == "__main__":
 
     # remove old files
     print("Removing old files...")
+    if not osp.exists("chrome"):
+        os.mkdir("chrome")
     shutil.rmtree(f"chrome/chrome-{build}")
     shutil.rmtree(f"chrome/chromedriver-{build}")
     os.remove("google-chrome")
