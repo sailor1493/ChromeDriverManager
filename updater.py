@@ -82,9 +82,9 @@ if __name__ == "__main__":
     if osp.exists(f"chrome/chromedriver-{build}"):
         shutil.rmtree(f"chrome/chromedriver-{build}")
     # remove symlinks
-    if osp.exists("google-chrome", follow_symlinks=False):
+    if osp.exists("google-chrome"):
         os.remove("google-chrome")
-    if osp.exists("chromedriver", follow_symlinks=False):
+    if osp.exists("chromedriver"):
         os.remove("chromedriver")
 
     print("Downloading files...")
