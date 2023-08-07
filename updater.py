@@ -88,6 +88,7 @@ if __name__ == "__main__":
 
     print("Downloading files...")
     stable = get_stable_version()
+    print(f"Stable version: {stable}")
     payload = get_download_information()
     version_options = payload["versions"]
 
