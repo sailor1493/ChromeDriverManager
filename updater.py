@@ -73,10 +73,18 @@ if __name__ == "__main__":
     print("Removing old files...")
     if not osp.exists("chrome"):
         os.mkdir("chrome")
-    shutil.rmtree(f"chrome/chrome-{build}")
-    shutil.rmtree(f"chrome/chromedriver-{build}")
-    os.remove("google-chrome")
-    os.remove("chromedriver")
+    if osp.exists("chrome/chrome.zip"):
+        os.remove("chrome/chrome.zip")
+    if osp.exists("chrome/chromedriver.zip"):
+        os.remove("chrome/chromedriver.zip")
+    if osp.exists(f"chrome/chrome-{build}"):
+        shutil.rmtree(f"chrome/chrome-{build}")
+    if osp.exists(f"chrome/chromedriver-{build}"):
+        shutil.rmtree(f"chrome/chromedriver-{build}")
+    if osp.exists("google-chrome"):
+        os.remove("google-chrome")
+    if osp.exists("chromedriver"):
+        os.remove("chromedriver")
 
     print("Downloading files...")
     stable = get_stable_version()
